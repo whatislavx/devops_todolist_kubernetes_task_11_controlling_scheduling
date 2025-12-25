@@ -84,7 +84,7 @@ spec:
               - matchExpressions:
                   - key: app
                     operator: In
-                    values: [ kube2py ]
+                    values: [ "mysql" ]
   volumeClaimTemplates:
   - metadata:
       name: data
