@@ -91,3 +91,20 @@ spec:
       - name: app-config-volume
         configMap:
           name: app-config
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: app
+                    operator: In
+                    values: [ "todoapp" ]
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values: [ busybox ]
+              topologyKey: "kubernetes.io/hostname"
+
